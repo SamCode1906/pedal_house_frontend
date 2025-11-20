@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesorios - PedalHouse</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+    <div class="top-bar">
+        <p>ENVÍOS GRATIS A TODO COLOMBIA - PAGOS CONTRA ENTREGA</p>
+    </div>
+
+    <div class="header-elegant">
+        <img src="./imgs/fondos/logo.png" class="logo-elegant" onclick="window.location.href='index.html'">
+        
+        <nav class="nav-elegant">
+            <ul class="nav-links-elegant">
+                <li><a href="index.html">Productos</a></li>
+                <li><a href="bicicletas.html">Bicicletas</a></li>
+                <li><a href="accesorios.html">Accesorios</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+
+            <div class="nav-icons-elegant">
+                <div class="user-avatar" onclick="mostrarModalLogin()">👤</div>
+                <i class="icon" onclick="mostrarCarrito()">🛒</i>
+            </div>
+        </nav>
+    </div>
+</header>
+
+    <!-- HERO -->
+    <section class="hero" style="background-image: url(./imgs/fondos/hero-image.jpg);">
+        <h1 class="hero-text">Vive la montaña<br>Siente la velocidad<br>Domina el terreno…</h1>
+    </section>
+
+    <!-- TITLE -->
+    <h2 class="section-title">ACCESORIOS</h2>
+
+    <!-- PRODUCT GRID -->
+    <div class="products-container">
+
+        <article class="card-bike">
+            <img src="./imgs/accesorios/GUANTE GIRO JAG II.jpg" alt="Guantes" />
+            <div class="info">
+                <h3>GUANTES<br>Giro Jag II</h3>
+                <button onclick="agregarAlCarrito(101, 'GUANTES Giro Jag II', 99000, './imgs/accesorios/GUANTE GIRO JAG II.jpg')">COMPRAR!</button>
+            </div>
+            <p class="price">$99.000</p>
+        </article>
+
+        <article class="card-bike">
+            <img src="./imgs/accesorios/GAFAS TIFOSI MOAB LT.jpg" alt="Gafas" />
+            <div class="info">
+                <h3>GAFAS<br>Tifosi Moab</h3>
+                <button onclick="agregarAlCarrito(102, 'GAFAS Tifosi Moab', 295000, './imgs/accesorios/GAFAS TIFOSI MOAB LT.jpg')">COMPRAR!</button>
+            </div>
+            <p class="price">$295.000</p>
+        </article>
+
+        <article class="card-bike">
+            <img src="./imgs/accesorios/ZAPATO CLIFF RUTA ELITDIAL2.0.jpg" alt="Calzado" />
+            <div class="info">
+                <h3>CALZADO<br>CLIFF RUTA</h3>
+                <button onclick="agregarAlCarrito(103, 'CALZADO CLIFF RUTA', 269000, './imgs/accesorios/ZAPATO CLIFF RUTA ELITDIAL2.0.jpg')">COMPRAR!</button>
+            </div>
+            <p class="price">$269.000</p>
+        </article>
+
+        <article class="card-bike">
+            <img src="./imgs/accesorios/CASCO TREK VELOCIS MIPS.jpg" alt="Casco" />
+            <div class="info">
+                <h3>CASCO<br>TREK VELOCIS</h3>
+                <button onclick="agregarAlCarrito(104, 'CASCO TREK VELOCIS', 899000, './imgs/accesorios/CASCO TREK VELOCIS MIPS.jpg')">COMPRAR!</button>
+            </div>
+            <p class="price">$899.000</p>
+        </article>
+
+        <article class="card-bike">
+            <img src="./imgs/accesorios/CARAMAÑOLA PODIUM CHILL 21 OZ BOTELLA.jpg" alt="Botella" />
+            <div class="info">
+                <h3>BOTELLA<br>PODIUM CHILL</h3>
+                <button onclick="agregarAlCarrito(105, 'BOTELLA PODIUM CHILL', 69000, './imgs/accesorios/CARAMAÑOLA PODIUM CHILL 21 OZ BOTELLA.jpg')">COMPRAR!</button>
+            </div>
+            <p class="price">$69.000</p>
+        </article>
+
+        <article class="card-bike">
+            <img src="./imgs/accesorios/BOLSO THULE ECO NOTUS PARA PC 20 L.jpg" alt="Mochila" />
+            <div class="info">
+                <h3>MOCHILA<br>THULE ECO</h3>
+                <button onclick="agregarAlCarrito(106, 'MOCHILA THULE ECO', 379000, './imgs/accesorios/BOLSO THULE ECO NOTUS PARA PC 20 L.jpg')">COMPRAR!</button>
+            </div>
+            <p class="price">$379.000</p>
+        </article>
+
+        <article class="card-bike">
+            <img src="./imgs/accesorios/CANDADO ULAC PRAGUE.jpg" alt="Candado" />
+            <div class="info">
+                <h3>CANDADO<br>ULAC PRAGUE</h3>
+                <button onclick="agregarAlCarrito(107, 'CANDADO ULAC PRAGUE', 49000, './imgs/accesorios/CANDADO ULAC PRAGUE.jpg')">COMPRAR!</button>
+            </div>
+            <p class="price">$49.000</p>
+        </article>
+
+        <article class="card-bike">
+            <img src="./imgs/accesorios/PORTAVASO CATEYE BC 100.jpg" alt="Portabotellas"/>
+            <div class="info">
+                <h3>PORTABOTELLAS<br>CATEYE BC</h3>
+                <button onclick="agregarAlCarrito(108, 'PORTABOTELLAS CATEYE BC', 25000, './imgs/accesorios/PORTAVASO CATEYE BC 100.jpg')">COMPRAR!</button>
+            </div>
+            <p class="price">$25.000</p>
+        </article>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <p>📧 info@pedalhouse.co</p>
+                <p>📞 +57 317 890 5613</p>
+                <p>📞 +57 300 356 0914</p>
+            </div>
+
+            <div class="footer-section">
+                <p>Calle 7 # 6a - 27</p>
+                <p>Medellín - Colombia</p>
+            </div>
+
+            <div class="footer-section social">
+                <p>🌐 Instagram</p>
+                <p>🌐 Facebook</p>
+                <p>🌐 WhatsApp</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

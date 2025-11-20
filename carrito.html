@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - PedalHouse</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+    <div class="top-bar">
+        <p>ENVÍOS GRATIS A TODO COLOMBIA - PAGOS CONTRA ENTREGA</p>
+    </div>
+
+    <div class="header-elegant">
+        <img src="./imgs/fondos/logo.png" class="logo-elegant" onclick="window.location.href='index.html'">
+        
+        <nav class="nav-elegant">
+            <ul class="nav-links-elegant">
+                <li><a href="index.html">Productos</a></li>
+                <li><a href="bicicletas.html">Bicicletas</a></li>
+                <li><a href="accesorios.html">Accesorios</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+
+            <div class="nav-icons-elegant">
+                <div class="user-avatar" onclick="mostrarModalLogin()">👤</div>
+                <i class="icon" onclick="mostrarCarrito()">🛒</i>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+    <!-- CONTENIDO DEL CARRITO -->
+    <div class="cart-container">
+        <h1>🛒 Tu Carrito de Compras</h1>
+        
+        <div id="cart-items">
+            <!-- Los productos del carrito se cargarán aquí -->
+        </div>
+
+        <div class="cart-summary">
+            <h3>Resumen del Pedido</h3>
+            <div class="summary-item">
+                <span>Subtotal:</span>
+                <span id="subtotal">$0</span>
+            </div>
+            <div class="summary-item">
+                <span>Envío:</span>
+                <span>GRATIS</span>
+            </div>
+            <div class="summary-item total">
+                <span>Total:</span>
+                <span id="total">$0</span>
+            </div>
+            <button class="checkout-btn" onclick="procesarCompra()">FINALIZAR COMPRA</button>
+        </div>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/products.js"></script>
+
+    <script>
+        // Función procesarCompra que falta
+        function procesarCompra() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            
+            if (carrito.length === 0) {
+                alert('🛒 Tu carrito está vacío');
+                return;
+            }
+
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('⚠️ Debes iniciar sesión para comprar');
+                mostrarModalLogin();
+                return;
+            }
+
+            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+            
+            const confirmacion = confirm(`¿Confirmar compra por $${total.toLocaleString('es-CO')}?`);
+            
+            if (confirmacion) {
+                alert('¡Compra realizada con éxito! 🎉\nTu pedido llegará en 3-5 días hábiles.');
+                
+                // Vaciar carrito
+                localStorage.removeItem('carrito');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Cargar carrito al iniciar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof cargarItemsCarrito === 'function') {
+                cargarItemsCarrito();
+            }
+            if (typeof actualizarContadorCarrito === 'function') {
+                actualizarContadorCarrito();
+            }
+        });
+    </script>
+</body>
+</html>
