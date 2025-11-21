@@ -136,37 +136,56 @@ async function manejarRegistro(event) {
     }
 }
 
-// ===== INTERFAZ DE USUARIO =====
+// ===== INTERFAZ DE USUARIO ====
+
 function actualizarNavbar() {
     const user = JSON.parse(localStorage.getItem('user'));
-    const navIcons = document.querySelector('.nav-icons');
+    const navIcons = document.querySelector('.nav-icons-elegant'); // Asegúrate que coincida con tu clase
     
-    if (!navIcons) return;
+    if (!navIcons) {
+        console.log('No se encontró nav-icons-elegant');
+        return;
+    }
     
     if (user) {
         navIcons.innerHTML = `
             <div style="display: flex; align-items: center; gap: 15px;">
-                <span style="color: black; font-weight: bold;">Hola, ${user.nombre}</span>
+                <span style="color: #2c3e50; font-weight: 600; font-size: 14px;">
+                    👋 Hola, ${user.nombre}
+                </span>
                 <button onclick="logout()" style="
-                    background: #ff4444; color: white; border: none; 
-                    padding: 8px 12px; border-radius: 5px; cursor: pointer;
+                    background: #ff4444; 
+                    color: white; 
+                    border: none; 
+                    padding: 8px 16px; 
+                    border-radius: 20px; 
+                    cursor: pointer;
                     font-size: 12px;
+                    font-weight: 600;
+                    transition: all 0.3s ease;
                 ">Cerrar Sesión</button>
-                <span style="cursor: pointer; font-size: 20px;" onclick="mostrarCarrito()">🛒</span>
+                <div class="cart-icon" onclick="mostrarCarrito()">🛒</div>
             </div>
         `;
     } else {
         navIcons.innerHTML = `
-            <i class="icon" onclick="mostrarModalLogin()" style="cursor: pointer;">👤</i>
-            <i class="icon" onclick="mostrarCarrito()" style="cursor: pointer;">🛒</i>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <div class="user-avatar" onclick="mostrarModalLogin()">👤</div>
+                <div class="cart-icon" onclick="mostrarCarrito()">🛒</div>
+            </div>
         `;
     }
+    
+    // Actualizar contador del carrito
+    if (typeof actualizarContadorCarrito === 'function') {
+        actualizarContadorCarrito();
+    }
+}
     
     // Actualizar contador del carrito si existe
     if (typeof actualizarContadorCarrito === 'function') {
         actualizarContadorCarrito();
     }
-}
 
 function mostrarNotificacion(mensaje) {
     const notificacion = document.createElement('div');
