@@ -45,7 +45,7 @@ function actualizarContadorCarrito() {
 
 function mostrarCarrito() {
     if (carrito.length === 0) {
-        alert('🛒 Tu carrito está vacío');
+        mostrarModal("Carrito vacío", "🛒 Tu carrito está vacío");
         return;
     }
     
@@ -54,7 +54,8 @@ function mostrarCarrito() {
         `• ${item.nombre} - $${item.precio.toLocaleString()} x${item.cantidad}`
     ).join('\n');
     
-    alert(`🛒 TU CARRITO (${carrito.length} productos)\n\n${mensaje}\n\n💰 TOTAL: $${total.toLocaleString()}`);
+    mostrarModal("Tu carrito 🛒", mensaje + "\n\nTOTAL: $" + total.toLocaleString());
+
 }
 
 // Hacer funciones globales
@@ -138,6 +139,23 @@ function eliminarDelCarrito(idProducto) {
     cargarItemsCarrito();
     actualizarContadorCarrito();
 }
+
+function mostrarModal(titulo, mensaje) {
+    const modal = document.getElementById("modal-alerta");
+    document.getElementById("modal-titulo").textContent = titulo;
+    document.getElementById("modal-mensaje").textContent = mensaje;
+
+    modal.style.display = "flex";
+
+    document.getElementById("modal-btn").onclick = () => {
+        modal.style.display = "none";
+    };
+
+    modal.onclick = (e) => {
+        if (e.target === modal) modal.style.display = "none";
+    };
+}
+
 
 // Hacer estas funciones globales también
 window.cargarItemsCarrito = cargarItemsCarrito;

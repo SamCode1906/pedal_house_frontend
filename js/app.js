@@ -1,7 +1,24 @@
-// app.js - Cerebro de la aplicación (UI + Coordinación)
 console.log('✅ app.js cargado - Inicializando PedalHouse');
 
 // ===== SISTEMA DE MODALES =====
+
+function mostrarModal(titulo, mensaje, callback = null) {
+    const modal = document.getElementById("modal-alerta");
+    const tituloEl = document.getElementById("modal-titulo");
+    const mensajeEl = document.getElementById("modal-mensaje");
+    const btn = document.getElementById("modal-btn");
+
+    tituloEl.innerHTML = titulo;
+    mensajeEl.innerHTML = mensaje;
+
+    modal.style.display = "flex";
+
+    btn.onclick = function() {
+        modal.style.display = "none";
+        if (callback) callback();
+    };
+}
+
 function mostrarModalLogin() {
     const modalHTML = `
         <div id="loginModal" style="

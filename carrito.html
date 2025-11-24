@@ -68,32 +68,44 @@
     <script>
         // Función procesarCompra que falta
         function procesarCompra() {
-            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            
-            if (carrito.length === 0) {
-                alert('🛒 Tu carrito está vacío');
-                return;
-            }
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-            const token = localStorage.getItem('token');
-            if (!token) {
-                alert('⚠️ Debes iniciar sesión para comprar');
-                mostrarModalLogin();
-                return;
-            }
+    // Carrito vacío
+    if (carrito.length === 0) {
+        mostrarModal("Carrito vacío", "Tu carrito está vacío. Agrega productos para continuar 🛒");
+        return;
+    }
 
-            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            
-            const confirmacion = confirm(`¿Confirmar compra por $${total.toLocaleString('es-CO')}?`);
-            
-            if (confirmacion) {
-                alert('¡Compra realizada con éxito! 🎉\nTu pedido llegará en 3-5 días hábiles.');
-                
-                // Vaciar carrito
-                localStorage.removeItem('carrito');
-                window.location.href = 'index.html';
-            }
+    // Sin sesión
+    const token = localStorage.getItem('token');
+    if (!token) {
+        mostrarModal("Inicia sesión", "Debes iniciar sesión para completar tu compra ⚠️");
+        mostrarModalLogin();
+        return;
+    }
+
+    // Total
+    const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+
+    // Confirmación personalizada
+    mostrarModal(
+        "Confirmar compra",
+        `¿Deseas confirmar tu compra por <b>$${total.toLocaleString('es-CO')}</b>?`,
+        () => finalizarCompra(total)
+    );
+}
+
+function finalizarCompra(total) {
+    mostrarModal(
+        "Compra exitosa 🎉",
+        `Tu pedido por <b>$${total.toLocaleString('es-CO')}</b> fue procesado.<br> Llegará en 3-5 días hábiles 🚚💨`,
+        () => {
+            localStorage.removeItem('carrito');
+            window.location.href = 'index.html';
         }
+    );
+}
+
 
         // Cargar carrito al iniciar la página
         document.addEventListener('DOMContentLoaded', function() {
@@ -105,5 +117,15 @@
             }
         });
     </script>
+
+    <!-- Modal general estilo tienda -->
+<div id="modal-alerta" class="modal-custom">
+  <div class="modal-content-custom">
+    <h2 id="modal-titulo"></h2>
+    <p id="modal-mensaje"></p>
+    <button id="modal-btn">Cerrar</button>
+  </div>
+</div>
+
 </body>
 </html>
